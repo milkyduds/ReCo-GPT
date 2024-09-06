@@ -1,0 +1,17 @@
+{
+    "sentiment": {
+        "polarity": 0.201,
+        "subjectivity": 0.471
+    },
+    "writing_style": {
+        "avg_num_sentences": 59.333,
+        "avg_num_tokens": 774.333,
+        "avg_words_per_sentence": 13.051,
+        "avg_token_length": 4.835,
+        "avg_num_nouns": 202.333,
+        "avg_num_verbs": 111.333,
+        "avg_num_adjectives": 58.333,
+        "avg_num_adverbs": 19.0,
+        "avg_num_unique_words": 277.667
+    }
+}
