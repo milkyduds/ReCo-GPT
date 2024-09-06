@@ -2,6 +2,9 @@ import base64
 import vertexai
 from vertexai.generative_models import GenerativeModel
 import vertexai.generative_models as generative_models
+import tkinter as tk
+from tkinter import scrolledtext
+from tkinter import font
 import json
 
 def multiturn_generate_content():
@@ -41,9 +44,34 @@ def multiturn_generate_content():
 
   # Extract and print the generated newsletter
   newsletter = response.candidates[0].content.parts[0].text
-  print(newsletter)
+  show_popup(newsletter)
   return
 
+from tkinter import font
+
+def show_popup(newsletter):
+  # Create the main window
+  window = tk.Tk()
+  window.title("Generated Newsletter")
+  window.geometry("1000x600")
+  # Create a scrolled text widget to display the content
+  text_area = scrolledtext.ScrolledText(window, wrap=tk.WORD, width=120, height=30)
+  text_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+
+  # Set a monospace font for better formatting
+  monospace_font = font.Font(family="Courier", size=10)
+  text_area.configure(font=monospace_font)
+
+  # Insert the newsletter content with proper formatting
+  formatted_newsletter = newsletter.replace("\n", "\n\n")
+  text_area.insert(tk.END, formatted_newsletter)
+
+  # Make the text area read-only
+  text_area.config(state=tk.DISABLED)
+
+  # Run the tkinter main loop
+  window.mainloop()
+  
 # Load sentiment data and configure generation settings
 try:
   with open('analysis_results.json', 'r') as json_file:
