@@ -7,7 +7,7 @@ from tkinter import scrolledtext
 from tkinter import font
 import json
 
-def multiturn_generate_content():
+def multiturn_generate_content(topic):
   # Initialize the Vertex AI model
   vertexai.init(project="poised-defender-426800-h6", location="us-central1")
   model = GenerativeModel(
@@ -25,7 +25,7 @@ def multiturn_generate_content():
       return
 
   # Get the topic from user input
-  topic = input("What topic would you like to write a newsletter about? ")
+  #topic = input("What topic would you like to write a newsletter about? ")
 
   # Construct the message for the chat
   message = (
@@ -37,17 +37,17 @@ def multiturn_generate_content():
 
   # Send the message and get the response
   response = chat.send_message(
-      message,
-      generation_config=generation_config,
-      safety_settings=safety_settings
+    message,
+    generation_config=generation_config,
+    safety_settings=safety_settings
   )
 
   # Extract and print the generated newsletter
+  print(response)
   newsletter = response.candidates[0].content.parts[0].text
-  show_popup(newsletter)
-  return
-
-from tkinter import font
+  print(newsletter)
+  #show_popup(newsletter)
+  return newsletter
 
 def show_popup(newsletter):
   # Create the main window
@@ -100,4 +100,4 @@ safety_settings = {
 }
 
 # Run the content generation function
-multiturn_generate_content()
+#multiturn_generate_content("Knowing Your Customer")
