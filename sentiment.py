@@ -8,7 +8,7 @@ nlp = spacy.load("en_core_web_sm")
 
 class TextAnalyzer:
     def __init__(self):
-        self.df = pd.read_csv('newsletter_data.csv')
+        self.df = pd.read_csv('linkedin.csv')
         self.total_files = len(self.df['text'])
         self.text = "".join(self.df['text'][0:self.total_files])
 
